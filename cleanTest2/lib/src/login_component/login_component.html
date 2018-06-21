@@ -1,0 +1,52 @@
+<!-- Login Formular und Buttons  -->
+<div *ngIf="loginAccepted == false && registering == false">
+    <h4>Login</h4>
+    <form>
+        login name:<br>
+        <input type="text" name="username" #username required><br>
+        password:<br>
+        <input type="text" name="password" #password required><br>
+    </form>
+
+    <button (click)="login(username.value, password.value)">Login</button>
+    <button (click)="startRegistration()">Register</button>
+
+    <!-- Anzeigen der User zum Debuggen -->
+    <div *ngFor="let user of userList">
+        <div>
+            <p>{{user.id}}</p>
+            <p>{{user.username}}</p>
+            <p>{{user.password}}</p>
+            <p>{{user.joined}}</p>
+            <div *ngFor="let role of user.roles">
+                <p>{{role.toString()}}</p>
+            </div>
+            <br>
+        </div>
+    </div>
+
+</div>
+
+<!-- Regestriegungsformular und Buttons -->
+<div *ngIf="registering == true && loginAccepted == false">
+
+    <h4>Register</h4>
+    <form>
+
+        login name:<br>
+        <input type="text" name="usernameRegister" #usernameRegister required><br>
+        password:<br>
+        <input type="text" name="passwordRegister" #passwordRegister required><br>
+
+    </form>
+    <button (click)="register(usernameRegister.value, passwordRegister.value)">Submit</button>
+    <button (click)="cancelRegistration()">Cancel</button>
+
+</div>
+
+
+<div *ngIf="loginAccepted == true">
+
+    <nav-comp [currentUser]="currentUser"></nav-comp>
+
+</div>

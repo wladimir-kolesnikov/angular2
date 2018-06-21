@@ -1,0 +1,31 @@
+<h4>Profile</h4>
+
+<!-- Details des Uers werden angezeigt -->
+<div>
+    <div>
+        <p>{{currentUser.id}}</p>
+        <p>{{currentUser.username}}</p>
+        <p>{{currentUser.password}}</p>
+        <p>{{currentUser.joined}}</p>
+        <div *ngFor="let role of currentUser.roles">
+            <p>{{role.toString()}}</p>
+        </div>
+        <br>
+    </div>
+</div>
+
+<!-- Button zum starten der Editierung, wenn noch nicht edtitiert wird -->
+<div *ngIf="editing == false">
+    <button (click)="startEditing()">Change Passoword</button>
+</div>
+
+
+<!-- Formular und Knopf zum ändern des Passwortes, und Button zum Abbrechen der Editierung -->
+<div *ngIf="editing == true">
+    <form>
+        password:<br>
+        <input type="text" name="password" #password><br>
+    </form>
+    <button (click)="updateUser(password.value)">Submit</button>
+    <button (click)="cancelEditing()">Cancel</button>
+</div>

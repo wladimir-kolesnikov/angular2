@@ -1,0 +1,12 @@
+<!-- Buttons zum wechseln zwischen Componenten -->
+<div>
+    <button (click)="switchToProfile()">Profile</button>
+    <button (click)="switchToNotes()">Notes</button>
+</div>
+
+<!-- Switch, die entsprechende Componente anzeigt -->
+<div [ngSwitch]="currentPage">
+    <test-comp *ngSwitchCase = "NOTES" [userID]="currentUser.id"></test-comp>
+    <profile-comp *ngSwitchCase = "PROFILE" [currentUser]="currentUser"></profile-comp>
+    <div *ngSwitchDefault>default</div>
+</div>
