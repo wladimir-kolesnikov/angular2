@@ -14,6 +14,7 @@ import 'package:cleanTest2/src/in_memory_db_compnent/in_memory_db_component.dart
 @Component(
   selector: 'login-comp',
   templateUrl: 'login_component.html',
+  styleUrls: const ['login_component.css'],
   directives: const [CORE_DIRECTIVES,formDirectives,NotesComponent, NavigationComponent],
   providers: const [UserService, InMemoryDatabaseService]
 )

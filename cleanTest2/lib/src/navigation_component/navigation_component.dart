@@ -9,6 +9,7 @@ import 'package:cleanTest2/src/user_component/User.dart';
 @Component(
   selector: 'nav-comp',
   templateUrl: 'navigation_component.html',
+  styleUrls: const ['navigation_component.css'],
   directives: const[CORE_DIRECTIVES, NotesComponent, LoginComponent, ProfileComponent ],
 )
 class NavigationComponent{

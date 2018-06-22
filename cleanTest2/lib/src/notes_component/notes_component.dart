@@ -14,6 +14,7 @@ import 'dart:async';
 @Component(
   selector: 'test-comp',
   templateUrl:'notes_component.html',
+  styleUrls: const ['notes_component.css'],
   directives:  const [CORE_DIRECTIVES, formDirectives, ],
     providers: const [NotesService, UserService]
 )
