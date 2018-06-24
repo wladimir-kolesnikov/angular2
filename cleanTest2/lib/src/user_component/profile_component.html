@@ -1,31 +1,41 @@
-<h4>Profile</h4>
+<h2>Profile</h2>
 
 <!-- Details des Uers werden angezeigt -->
+
+
 <div>
-    <div>
-        <p>{{currentUser.id}}</p>
+    <div class="detailsLabel">
+        <p>Username:</p>
+        <p>Password:</p>
+        <p>Joined:</p>
+        <p>Roles:</p>
+    </div>
+
+
+    <div class="detailsInformation">
+        <!--p>{{currentUser.id}}</p-->
         <p>{{currentUser.username}}</p>
         <p>{{currentUser.password}}</p>
-        <p>{{currentUser.joined}}</p>
+        <p>{{dateTimeToDateString(currentUser.joined)}}</p>
         <div *ngFor="let role of currentUser.roles">
-            <p>{{role.toString()}}</p>
-        </div>
+            <p>{{roleToString(role)}}</p>
+    </div>
         <br>
     </div>
 </div>
 
 <!-- Button zum starten der Editierung, wenn noch nicht edtitiert wird -->
 <div *ngIf="editing == false">
-    <button (click)="startEditing()">Change Passoword</button>
+    <button class="changePasswordButton" (click)="startEditing()">Change Passoword</button>
 </div>
 
 
 <!-- Formular und Knopf zum ändern des Passwortes, und Button zum Abbrechen der Editierung -->
 <div *ngIf="editing == true">
     <form>
-        password:<br>
-        <input type="text" name="password" #password><br>
+        <p class="inputLabel">password:</p>
+        <input class="inputField" type="text" name="password" #password><br>
     </form>
-    <button (click)="updateUser(password.value)">Submit</button>
-    <button (click)="cancelEditing()">Cancel</button>
+    <button class="normalButtons" (click)="updateUser(password.value)">Submit</button>
+<button class="normalButtons" (click)="cancelEditing()">Cancel</button>
 </div>

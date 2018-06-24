@@ -11,15 +11,18 @@ import 'package:cleanTest2/src/user_component/User.dart';
 @Injectable()
 class UserService{
   final InMemoryDatabaseService inMemoryDatabaseService;
+  final Client _http;
 
-  UserService(this.inMemoryDatabaseService);
+  UserService(this.inMemoryDatabaseService, this._http);
 
   //GET
   //Funtion holt alle User aus der Datenbank
   Future<List<User>> getUserList() async{
     try{
       final response = await inMemoryDatabaseService.get('api/users');
-      print(_extractData(response).toString());
+      //URL anpassen
+      //final response = await _http.get('api/users');
+      //print(_extractData(response).toString());
       final users = (_extractData(response) as List).map((json) => new User.fromJason(json)).toList();
       return users;
     }
@@ -35,6 +38,10 @@ class UserService{
     try{
       final response = await inMemoryDatabaseService.post('api/users', headers: {'Conent-Type':'applicaton/json'},
           body: JSON.encode(user.toJson()));
+      //URL anpassen
+      //final response = await _http.post('api/users', headers: {'Conent-Type':'applicaton/json'},
+      //    body: JSON.encode(user.toJson()));
+
     }
     catch(e){
       _handleError(e);
@@ -49,6 +56,10 @@ class UserService{
     try{
       final response = await inMemoryDatabaseService.put('api/users/$id', headers: {'Content-Type':'application/json'},
           body:JSON.encode(user.toJson()));
+      //URL anpassen
+      //final response = await _http.put('api/users/$id', headers: {'Content-Type':'application/json'},
+      //    body:JSON.encode(user.toJson()));
+
     }
     catch(e){
       _handleError(e);
